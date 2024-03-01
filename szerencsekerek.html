@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="szcss.css">
+    <title>Spin Wheel</title>
+</head>
+<body>
+    <button id="spin">Spin</button>
+    <span class="arrow"></span>
+    <div class="container">
+        <div class="one">1</div>
+        <div class="two">2</div>
+        <div class="three">3</div>
+        <div class="four">4</div>
+        <div class="five">5</div>
+        <div class="six">6</div>
+        <div class="seven">7</div>
+        <div class="eight">8</div>
+    </div>
+
+    <script>
+        let container = document.querySelector(".container");
+        let btn = document.getElementById("spin");
+        let number = 0;
+
+        let clicks = 0;
+        btn.onclick = function () {
+            clicks += 1;
+            if (clicks == 1) {
+                number = Math.ceil(Math.random() * 360); // 0-360 fok közötti értéket generálunk
+                container.style.transition = "transform 3s ease-out"; // 3 másodpercig tartó animáció
+                container.style.transform = "rotate(" + (number + 360 * 5) + "deg)"; // Pörgetés 5 teljes körrel
+                setTimeout(showResult, 3000); // 3 másodperc után jelenítsük meg az eredményt
+            }
+        }
+
+        function showResult() {
+            let result = number % 360; // Az eredményt 360 fokkal osszuk, hogy 0-360 fok közötti értéket kapjunk
+
+            if (result >= 0 && result <= 45) {
+                alert("Gratulálok, 10% kedvezményt nyertél!");
+            } else if (result > 45 && result <= 90) {
+                alert("Gratulálok, 25% kedvezményt nyertél!");
+            } else if (result > 90 && result <= 135) {
+                alert("Gratulálok, 50% kedvezményt nyertél!");
+            } else if (result > 135 && result <= 180) {
+                alert("Gratulálok, 70% kedvezményt nyertél!");
+            } else if (result > 180 && result <= 225) {
+                alert("Gratulálok, ingyen konzultációt nyertél!");
+            } else if (result > 225 && result <= 270) {
+                alert("Gratulálok, iPhone 12 telefont nyertél!");
+            } else if (result > 270 && result <= 315) {
+                alert("Gratulálok, egy nagy faszt nyertél!"); 
+            }else if (result > 315 && result <= 359) {
+                alert("Gratulálok, megnyerted Tóth Ádámot!");
+            }
+        }
+    </script>
+</body>
+</html>
